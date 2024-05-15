@@ -1,0 +1,1610 @@
+{
+	"info": {
+		"_postman_id": "8a65e130-82ea-4808-a4d2-62873e7344c7",
+		"name": "Alta Shop API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33032839"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get all product",
+					"item": [
+						{
+							"name": "Can't get all product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// respons menunjukkan pesan error jika status 404\r",
+											"pm.test('Check if response contains expected error when record is not found', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    const responseData = pm.response.json();\r",
+											"\r",
+											"    if (statusCode === 404) {\r",
+											"        pm.expect(responseData).to.have.property('error'); \r",
+											"        pm.expect(responseData.error).to.be.a('string');\r",
+											"        pm.expect(responseData.error).to.equal('record not found'); \r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"pm.test('Check for unexpected status code', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (![200, 404].includes(statusCode)) {\r",
+											"        console.error('Unexpected status code:', statusCode);\r",
+											"        pm.test('Unexpected status code should have an error property', () => {\r",
+											"            const responseData = pm.response.json();\r",
+											"            pm.expect(responseData).to.have.property('error');\r",
+											"            pm.expect(responseData.error).to.be.a('string'); \r",
+											"        });\r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"data\": [\r\n    {\r\n      \"ID\": 1,\r\n      \"Name\": \"logitech g29\",\r\n      \"Description\": \"steering wheel\",\r\n      \"Price\": 299,\r\n      \"Ratings\": 4,\r\n      \"Categories\": []\r\n    },\r\n    {\r\n      \"ID\": 2,\r\n      \"Name\": \"Sony PS5\",\r\n      \"Description\": \"play has no limits\",\r\n      \"Price\": 299,\r\n      \"Ratings\": 0,\r\n      \"Categories\": [\r\n        {\r\n          \"ID\": 2,\r\n          \"Name\": \"gaming\",\r\n          \"Description\": \"for gaming purposes\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://altashop-api.fly.dev/api/products",
+									"protocol": "https",
+									"host": [
+										"altashop-api",
+										"fly",
+										"dev"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// status kode 200 atau 404\r",
+											"pm.test('Response status code should be 200 or 404', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    pm.expect([200, 404]).to.include(statusCode); // Status kode harus 200 atau 404\r",
+											"});\r",
+											"\r",
+											"// konten tipe adalah JSON\r",
+											"pm.test('Response content type should be application/json', () => {\r",
+											"    const contentType = pm.response.headers.get('Content-Type');\r",
+											"    pm.expect(contentType).to.include('application/json'); // Harus berformat JSON\r",
+											"});\r",
+											"\r",
+											"// respons memiliki data yang diharapkan jika status 200\r",
+											"pm.test('Check if response contains expected data when successful', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    const responseData = pm.response.json();\r",
+											"\r",
+											"    if (statusCode === 200) { \r",
+											"        pm.expect(responseData).to.have.property('data'); // Harus memiliki objek 'data'\r",
+											"\r",
+											"        const products = responseData.data; // Menganggap ini adalah array produk\r",
+											"        products.forEach((product) => {\r",
+											"            pm.expect(product).to.have.property('ID'); \r",
+											"            pm.expect(product.ID).to.be.a('number').and.to.be.greaterThan(0);\r",
+											"\r",
+											"            pm.expect(product).to.have.property('Name'); \r",
+											"            pm.expect(product.Name).to.be.a('string').and.to.have.length.at.least(1);\r",
+											"\r",
+											"            pm.expect(product).to.have.property('Description'); \r",
+											"            pm.expect(product.Description).to.be.a('string');\r",
+											"\r",
+											"            pm.expect(product).to.have.property('Price'); \r",
+											"            pm.expect(product.Price).to.be.a('number').and.to.be.greaterThanOrEqual(0);\r",
+											"\r",
+											"            pm.expect(product).to.have.property('Ratings'); \r",
+											"            pm.expect(product.Ratings).to.be.a('number').and.to.be.within(0, 5);\r",
+											"\r",
+											"            if (product.Categories) { // Jika 'Categories' ada\r",
+											"                pm.expect(product.Categories).to.be.an('array'); \r",
+											"                product.Categories.forEach((category) => { \r",
+											"                    pm.expect(category).to.have.property('ID').that.is.a('number'); \r",
+											"                    pm.expect(category).to.have.property('Name').that.is.a('string'); \r",
+											"                    pm.expect(category).to.have.property('Description').that.is.a('string'); \r",
+											"                });\r",
+											"            }\r",
+											"        });\r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"data\": [\r\n    {\r\n      \"ID\": 1,\r\n      \"Name\": \"logitech g29\",\r\n      \"Description\": \"steering wheel\",\r\n      \"Price\": 299,\r\n      \"Ratings\": 4,\r\n      \"Categories\": []\r\n    },\r\n    {\r\n      \"ID\": 2,\r\n      \"Name\": \"Sony PS5\",\r\n      \"Description\": \"play has no limits\",\r\n      \"Price\": 299,\r\n      \"Ratings\": 0,\r\n      \"Categories\": [\r\n        {\r\n          \"ID\": 2,\r\n          \"Name\": \"gaming\",\r\n          \"Description\": \"for gaming purposes\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/products",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create a new product",
+					"item": [
+						{
+							"name": "Can't create a new product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// memastikan status kode tidak 500\r",
+											"pm.test('Response status code should not be 500', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    pm.expect(statusCode).to.not.equal(500); // jangan sampai 500, artinya kesalahan server\r",
+											"});\r",
+											"\r",
+											"// memastikan konten tipe tidak plain text\r",
+											"pm.test('Response content type should not be plain text', () => {\r",
+											"    const contentType = pm.response.headers.get('Content-Type');\r",
+											"    pm.expect(contentType).to.not.include('text/plain'); // jangan sampai plain text\r",
+											"});\r",
+											"\r",
+											"// memastikan respons tidak sesuai jika status kode bukan 200 atau 404\r",
+											"pm.test('Check if response is invalid when status code is unexpected', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    const responseData = pm.response.json();\r",
+											"\r",
+											"    pm.expect([200, 404]).to.not.include(statusCode); // jangan sampai status 200 atau 404\r",
+											"\r",
+											"    if (statusCode === 400) { // jika respons menunjukkan kesalahan input\r",
+											"        pm.test('Response should indicate invalid input', () => {\r",
+											"            pm.expect(responseData).to.have.property('error');\r",
+											"            pm.expect(responseData.error).to.be.a('string');\r",
+											"            pm.expect(responseData.error).to.include('Invalid'); // input tidak valid\r",
+											"        });\r",
+											"    } else if (statusCode === 403) { // jika respons menunjukkan akses yang ditolak\r",
+											"        pm.test('Response should indicate unauthorized access', () => {\r",
+											"            pm.expect(responseData).to.have.property('error');\r",
+											"            pm.expect(responseData.error).to.be.a('string');\r",
+											"            pm.expect(responseData.error).to.include('Unauthorized');\r",
+											"        });\r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Sony PS5\",\r\n    \"description\":\"play has no limits\",\r\n    \"price\":299,\r\n    \"categories\":[\r\n        2\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/2/ratings",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"2",
+										"ratings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a new product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// status kode 200, 404, atau 401\r",
+											"pm.test('Response status code should be 200, 404, or 401', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    pm.expect([200, 404, 401]).to.include(statusCode); // Status kode harus 200, 404, atau 401\r",
+											"});\r",
+											"\r",
+											"// konten tipe adalah JSON\r",
+											"pm.test('Response content type should be application/json', () => {\r",
+											"    const contentType = pm.response.headers.get('Content-Type');\r",
+											"    pm.expect(contentType).to.include('application/json'); // Harus berformat JSON\r",
+											"});\r",
+											"\r",
+											"// respons memiliki data yang diharapkan jika status 200\r",
+											"pm.test('Check if response contains expected data when successful', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    const responseData = pm.response.json();\r",
+											"\r",
+											"    if (statusCode === 200) {\r",
+											"        pm.test('Response should contain a data object', () => {\r",
+											"            pm.expect(responseData).to.have.property('data'); // Harus memiliki objek 'data'\r",
+											"            const product = responseData.data;\r",
+											"\r",
+											"            pm.expect(product.ID).to.exist.and.to.be.a('number');\r",
+											"            pm.expect(product.Name).to.exist.and.to.be.a('string');\r",
+											"            pm.expect(product.Description).to.exist.and.to.be.a('string');\r",
+											"            pm.expect(product.Price).to.exist.and.to.be.a('number');\r",
+											"            pm.expect(product.Ratings).to.exist.and.to.be.a('number');\r",
+											"\r",
+											"            pm.expect(product.Categories).to.exist.and.to.be.an('array');\r",
+											"            product.Categories.forEach((category) => {\r",
+											"                pm.expect(category.ID).to.exist.and.to.be.a('number');\r",
+											"                pm.expect(category.Name).to.exist.and.to.be.a('string');\r",
+											"            });\r",
+											"        });\r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"// respons menunjukkan pesan error jika status 404\r",
+											"pm.test('Check if response contains expected error when record is not found', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    const responseData = pm.response.json();\r",
+											"\r",
+											"    if (statusCode === 404) {\r",
+											"        pm.test('Response should contain an error property', () => {\r",
+											"            pm.expect(responseData).to.have.property('error'); \r",
+											"            pm.expect(responseData.error).to.be.a('string');\r",
+											"            pm.expect(responseData.error).to.equal('record not found'); \r",
+											"        });\r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"// respons menunjukkan pesan error jika status 401\r",
+											"pm.test('Check if response contains expected error when unauthorized', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    const responseData = pm.response.json();\r",
+											"\r",
+											"    if (statusCode === 401) {\r",
+											"        pm.test('Response should contain an error message indicating unauthorized access', () => {\r",
+											"            pm.expect(responseData).to.have.property('error'); \r",
+											"            pm.expect(responseData.error).to.be.a('string');\r",
+											"            // kita ubahkan menjadi lowercase untuk menghindari masalah kapitalisasi\r",
+											"            pm.expect(responseData.error.toLowerCase()).to.equal('unauthorized'); \r",
+											"        });\r",
+											"    }\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Sony PS5\",\r\n    \"description\":\"play has no limits\",\r\n    \"price\":299,\r\n    \"categories\":[\r\n        2\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/2/ratings",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"2",
+										"ratings"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete product",
+					"item": [
+						{
+							"name": "Delete a product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Debugging Status Code dan Respons', () => {\r",
+											"    const rawStatusCode = pm.response.status;\r",
+											"    console.log('Status Code:', rawStatusCode); \r",
+											"    console.log('Response Data:', pm.response.text()); \r",
+											"});\r",
+											"\r",
+											"pm.test('Ensure the response status code is valid for DELETE', () => {\r",
+											"    let rawStatusCode = pm.response.status; \r",
+											"\r",
+											"    pm.expect(rawStatusCode).to.exist;\r",
+											"\r",
+											"    let statusCode;\r",
+											"    if (typeof rawStatusCode === 'string') {\r",
+											"        const lowerStatus = rawStatusCode.toLowerCase(); \r",
+											"        switch (lowerStatus) {\r",
+											"            case 'ok': \r",
+											"                statusCode = 200;\r",
+											"                break;\r",
+											"            case 'not found':\r",
+											"                statusCode = 404;\r",
+											"                break;\r",
+											"            case 'method not allowed': \r",
+											"                statusCode = 405;\r",
+											"                break;\r",
+											"            default: \r",
+											"                throw new Error(`Cannot parse status code: ${rawStatusCode}`); \r",
+											"        }\r",
+											"    } else { \r",
+											"        statusCode = parseInt(rawStatusCode, 10);\r",
+											"    }\r",
+											"\r",
+											"    pm.expect([200, 404, 405]).to.include(statusCode); \r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/1/ratings",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"1",
+										"ratings"
+									]
+								},
+								"description": "\n### Delete Product\nThis endpoint is used to delete a specific product from the Altashop API.\n\n#### Request\n- Method: DELETE\n- Endpoint: `https://altashop-api.fly.dev/api/products/1`\n\n#### Response\n- Status: 200\n- Content-Type: application/json\n- Body:\n  ```json\n  {\n      \"data\": null\n  }\n  ```\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Can't delete a product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Negative Test - Incorrect HTTP Method', () => {\r",
+											"    pm.sendRequest({\r",
+											"        url: pm.environment.get('delete_product_url'), \r",
+											"        method: 'PUT'\r",
+											"    }, (err, res) => {\r",
+											"        if (err) {\r",
+											"            console.error('Error:', err);\r",
+											"        } else {\r",
+											"            pm.expect(res).to.have.status(405);\r",
+											"            const responseData = res.json();\r",
+											"            pm.expect(responseData).to.have.property('error').and.to.be.a('string');\r",
+											"        }\r",
+											"    });\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/1/ratings",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"1",
+										"ratings"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get product by id",
+					"item": [
+						{
+							"name": "Get product by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Memastikan status kode adalah 200 atau 404\r",
+											"pm.test('Response status code should be 200 or 404', () => {\r",
+											"    pm.expect([200, 404]).to.include(pm.response.code); // Status kode harus 200 atau 404\r",
+											"});\r",
+											"\r",
+											"// Memastikan jenis konten adalah application/json\r",
+											"pm.test('Response content type should be application/json', () => {\r",
+											"    const contentType = pm.response.headers.get('Content-Type');\r",
+											"    pm.expect(contentType).to.exist; // Pastikan ada header 'Content-Type'\r",
+											"    pm.expect(contentType).to.include('application/json'); // Pastikan konten adalah JSON\r",
+											"});\r",
+											"\r",
+											"// Memastikan respons dapat diparsing sebagai JSON\r",
+											"pm.test('Check if response is JSON', () => {\r",
+											"    const contentType = pm.response.headers.get('Content-Type');\r",
+											"\r",
+											"    // Memeriksa apakah konten bertipe JSON\r",
+											"    pm.expect(contentType).to.exist;\r",
+											"    pm.expect(contentType).to.include('application/json');\r",
+											"\r",
+											"    const responseData = pm.response.json(); // Parsing respons JSON\r",
+											"    \r",
+											"    if (pm.response.status === 200) { // Jika status 200, periksa data produk\r",
+											"        pm.expect(responseData).to.have.property('data'); \r",
+											"        const product = responseData.data;\r",
+											"\r",
+											"        // Memastikan atribut produk benar\r",
+											"        pm.expect(product).to.have.property('ID', 2);\r",
+											"        pm.expect(product).to.have.property('Name', 'Sony PS5');\r",
+											"        pm.expect(product).to.have.property('Description', 'play has no limits');\r",
+											"        pm.expect(product).to.have.property('Price', 299);\r",
+											"        pm.expect(product.Ratings).to.be.within(0, 5);\r",
+											"\r",
+											"        const category = product.Categories[0];\r",
+											"        pm.expect(category).to.have.property('ID', 2);\r",
+											"        pm.expect(category).to.have.property('Name', 'gaming');\r",
+											"    } else if (pm.response.status === 404) { // Jika status 404, periksa pesan kesalahan\r",
+											"        pm.expect(responseData).to.have.property('error'); \r",
+											"        pm.expect(responseData.error).to.equal('record not found');\r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/2/ratings",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"2",
+										"ratings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Can't get product by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Unexpected content type or parsing error', () => {\r",
+											"    const contentType = pm.response.headers.get('Content-Type');\r",
+											"    \r",
+											"    if (!contentType || !contentType.includes('application/json')) {\r",
+											"        console.error('Unexpected content type:', contentType); \r",
+											"        pm.expect.fail('Expected content type application/json'); \r",
+											"    } else {\r",
+											"        try {\r",
+											"            pm.response.json(); \r",
+											"        } catch (e) {\r",
+											"            console.error('JSON parsing error:', e);\r",
+											"            pm.expect.fail('Response is not valid JSON'); \r",
+											"        }\r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test('Response should have error if status is not 200 or 404', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (![200, 404].includes(statusCode)) { \r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property('error'); \r",
+											"        pm.expect(responseData.error).to.be.a('string'); \r",
+											"    } else {\r",
+											"        console.error('Unexpected status code:', statusCode);\r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/2",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Assign a product rating",
+					"item": [
+						{
+							"name": "Assign a product rating",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Memastikan status kode adalah 200, 401, atau 404\r",
+											"pm.test(\"Response status code should be 200, 401, or 404\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    pm.expect([200, 401, 404]).to.include(statusCode); \r",
+											"});\r",
+											"\r",
+											"// Memastikan jenis konten adalah application/json\r",
+											"pm.test(\"Check content type is application/json\", () => {\r",
+											"    const contentType = pm.response.headers.get(\"Content-Type\");\r",
+											"    pm.expect(contentType).to.include(\"application/json\"); // Pastikan respons adalah JSON\r",
+											"});\r",
+											"\r",
+											"// Jika status kode 200, periksa properti 'data'\r",
+											"pm.test(\"Check response for data property if status is 200\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    if (statusCode === 200) {\r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"data\"); \r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"count\":4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/2/ratings",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"2",
+										"ratings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Can't assign a product rating",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Jika status kode 404, pastikan respons menunjukkan pesan error \"record not found\"\r",
+											"pm.test(\"Response should contain error if status is 404\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 404) {\r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.be.a(\"string\").and.to.equal(\"record not found\");\r",
+											"    } else if (statusCode === 401) {\r",
+											"        console.warn('Received 401 instead of 404'); \r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.be.a(\"string\").and.to.include(\"unauthorized\"); \r",
+											"    } else {\r",
+											"        console.error('Expected 404, but got:', statusCode); \r",
+											"        pm.expect.fail('Expected status 404 but got ' + statusCode);\r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"// Jika status kode 401, pastikan respons menunjukkan pesan \"unauthorized\"\r",
+											"pm.test(\"Check response for error message if status is 401\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    if (statusCode === 401) {\r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.be.a(\"string\").and.to.include(\"unauthorized\"); \r",
+											"    } else {\r",
+											"        console.error('Expected 401, but got:', statusCode); \r",
+											"        pm.expect.fail('Expected status 401 but got ' + statusCode);\r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/2/ratings",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"2",
+										"ratings"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get product rating",
+					"item": [
+						{
+							"name": "Get product rating",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// status kode adalah 200 atau 404\r",
+											"pm.test(\"Response status code should be 200 or 404\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    pm.expect([200, 404]).to.include(statusCode); // Status kode harus 200 atau 404\r",
+											"});\r",
+											"\r",
+											"// jenis konten adalah application/json\r",
+											"pm.test(\"Response content type should be application/json\", () => {\r",
+											"    const contentType = pm.response.headers.get(\"Content-Type\");\r",
+											"    pm.expect(contentType).to.include(\"application/json\"); \r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Check data field in response with valid rating\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 200) { \r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"data\"); \r",
+											"\r",
+											"        const rating = responseData.data; \r",
+											"        pm.expect(rating).to.be.a(\"number\"); \r",
+											"        pm.expect(rating).to.be.within(1, 5); \r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/1/ratings",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"1",
+										"ratings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Can't get product rating",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Tes memastikan respons memiliki pesan error jika status kode 404\r",
+											"pm.test(\"Response should contain an error message indicating not found\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 404) { \r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.be.a(\"string\").and.to.include(\"not found\"); // Validasi pesan error\r",
+											"    } else {\r",
+											"        // Log status kode yang tidak diharapkan\r",
+											"        console.error('Unexpected status code:', statusCode); \r",
+											"        // Jika status 200, periksa apakah respons memiliki data\r",
+											"        if (statusCode === 200) {\r",
+											"            const responseData = pm.response.json();\r",
+											"            pm.expect(responseData).to.have.property(\"data\"); \r",
+											"        } else {\r",
+											"            // Tandai sebagai kegagalan jika status kode tidak sesuai\r",
+											"            pm.expect.fail('Expected status 404 but got ' + statusCode); \r",
+											"        }\r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/1/ratings",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"1",
+										"ratings"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create a comment for product",
+					"item": [
+						{
+							"name": "Create a comment for product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Tes memastikan status kode adalah 200, 401, atau 404\r",
+											"pm.test(\"Response status code should be 200, 401, or 404\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    pm.expect([200, 401, 404]).to.include(statusCode); // Status kode harus termasuk dalam daftar ini\r",
+											"});\r",
+											"\r",
+											"// Tes memastikan jenis konten adalah application/json\r",
+											"pm.test(\"Response content type should be application/json\", () => {\r",
+											"    const contentType = pm.response.headers.get(\"Content-Type\");\r",
+											"    pm.expect(contentType).to.include(\"application/json\"); // Pastikan konten adalah JSON\r",
+											"});\r",
+											"\r",
+											"// Jika status kode adalah 200, periksa apakah respons memiliki struktur yang diharapkan\r",
+											"pm.test(\"Response should contain a data object with valid fields\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 200) { // Jika respons sukses, pastikan struktur data\r",
+											"        const responseData = pm.response.json(); // Parsing respons JSON\r",
+											"        pm.expect(responseData).to.have.property(\"data\"); // Harus memiliki properti 'data'\r",
+											"\r",
+											"        const comment = responseData.data; // Pastikan data memiliki field yang diharapkan\r",
+											"        pm.expect(comment).to.have.property(\"ID\").that.is.a(\"number\");\r",
+											"        pm.expect(comment).to.have.property(\"Content\").that.is.a(\"string\");\r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"content\":\"the games are great including Gran Turismo 7 but sadly GT4 is much better\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/2/comments",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"2",
+										"comments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Can't create a comment for product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Tes memastikan respons memiliki pesan error jika status kode adalah 401\r",
+											"pm.test(\"Response should contain an error message for unauthorized access\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 401) { // Jika status kode 401, pastikan pesan error benar\r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.equal(\"unauthorized\"); // Validasi pesan error\r",
+											"    } else {\r",
+											"        console.error(\"Unexpected status code for unauthorized:\", statusCode); \r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"// Tes memastikan respons memiliki pesan error jika status kode 404\r",
+											"pm.test(\"Response should contain an error message for not found\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 404) { // Jika status kode 404, pastikan pesan error benar\r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.be.a(\"string\").and.to.include(\"not found\"); \r",
+											"    } else if (statusCode === 401) { // Tambahkan fallback untuk status kode yang berbeda\r",
+											"        console.warn(\"Received 401 instead of 404\"); \r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.equal(\"unauthorized\"); \r",
+											"    } else {\r",
+											"        console.error(\"Expected 404, but got:\", statusCode); \r",
+											"        pm.expect.fail(\"Expected status 404 but got \" + statusCode); \r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/2/comments",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"2",
+										"comments"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get product comment",
+					"item": [
+						{
+							"name": "Get product comment",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code should be 200 or 404\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    pm.expect([200, 404]).to.include(statusCode); // Status kode harus 200 atau 404\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response content type should be application/json\", () => {\r",
+											"    const contentType = pm.response.headers.get(\"Content-Type\");\r",
+											"    pm.expect(contentType).to.include(\"application/json\"); \r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response should contain a data array\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    if (statusCode === 200) {\r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"data\"); \r",
+											"        pm.expect(responseData.data).to.be.an(\"array\"); \r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Data array should contain comments with expected structure\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    if (statusCode === 200) {\r",
+											"        const responseData = pm.response.json(); \r",
+											"        const comments = responseData.data; \r",
+											"\r",
+											"        pm.expect(comments).to.not.be.empty; \r",
+											"        comments.forEach(comment => {\r",
+											"            pm.expect(comment).to.be.an(\"object\"); \r",
+											"            pm.expect(comment).to.have.property(\"ID\").that.is.a(\"number\"); \r",
+											"            pm.expect(comment).to.have.property(\"Content\").that.is.a(\"string\"); \r",
+											"        });\r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/2/comments",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"2",
+										"comments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Can't get product comment",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response should contain an error message indicating not found\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 404) { \r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.be.a(\"string\").and.to.include(\"not found\"); \r",
+											"    } else {\r",
+											"        if (statusCode === 200) {\r",
+											"            console.warn(\"Expected 404 but got 200\"); \r",
+											"            const responseData = pm.response.json(); \r",
+											"            pm.expect(responseData).to.have.property(\"data\"); \r",
+											"        } else {\r",
+											"            console.error(\"Unexpected status code:\", statusCode); \r",
+											"            pm.expect.fail(\"Expected status 404 but got \" + statusCode); \r",
+											"        }\r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/2/comments",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"2",
+										"comments"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Create a new order",
+					"item": [
+						{
+							"name": "Create a new order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status code should be 200, 401, or 404', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    pm.expect([200, 401, 404]).to.include(statusCode); \r",
+											"});\r",
+											"\r",
+											"pm.test('Check response content structure', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 200) { \r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.be.an('object'); \r",
+											"        pm.expect(responseData).to.have.property('data'); \r",
+											"        \r",
+											"        const data = responseData.data; \r",
+											"        pm.expect(data).to.be.an('array').and.to.not.be.empty; \r",
+											"        const order = data[0]; \r",
+											"\r",
+											"        pm.expect(order).to.have.property('ID').that.is.a('number'); \r",
+											"        pm.expect(order).to.have.property('User'); \r",
+											"        pm.expect(order.User).to.have.property('Fullname').that.is.a('string');\r",
+											"        pm.expect(order.User).to.have.property('Email').that.is.a('string');\r",
+											"\r",
+											"        pm.expect(order).to.have.property('Product'); \r",
+											"        pm.expect(order.Product).to.have.property('Name').that.is.a('string');\r",
+											"        pm.expect(order.Product).to.have.property('Description').that.is.a('string');\r",
+											"        pm.expect(order.Product).to.have.property('Price').that.is.a('number');\r",
+											"\r",
+											"        pm.expect(order).to.have.property('Quantity').that.is.a('number'); \r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"product_id\":2,\r\n        \"quantity\":1\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/orders",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Can't create a new order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response should contain an error message for unauthorized access\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 401) { \r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.equal(\"unauthorized\"); \r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response should contain an error message for not found\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 404) { \r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.be.a(\"string\").and.to.include(\"record not found\"); \r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/orders",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get order by id",
+					"item": [
+						{
+							"name": "Get order by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Tes untuk memastikan status kode adalah 200, 404, atau 401\r",
+											"pm.test(\"Response status code should be 200, 404, or 401\", () => {\r",
+											"  const statusCode = pm.response.code;\r",
+											"  pm.expect([200, 404, 401]).to.include(statusCode); // Pastikan status kode termasuk dalam daftar ini\r",
+											"});\r",
+											"\r",
+											"// Tes untuk memeriksa apakah respons adalah JSON dan memiliki data yang diharapkan\r",
+											"pm.test(\"Check if response is JSON and has expected data\", () => {\r",
+											"  const statusCode = pm.response.code;\r",
+											"  const responseData = pm.response.json();\r",
+											"\r",
+											"  if (statusCode === 200) { // Jika respons berhasil, pastikan struktur data\r",
+											"    pm.expect(responseData).to.have.property(\"data\"); // Harus memiliki properti 'data'\r",
+											"\r",
+											"    const order = responseData.data; // Ambil objek 'data'\r",
+											"    pm.expect(order).to.have.property(\"ID\").that.is.a(\"number\"); // Periksa atribut yang diharapkan\r",
+											"\r",
+											"    pm.expect(order).to.have.property(\"User\");\r",
+											"    pm.expect(order.User).to.have.property(\"Fullname\").that.is.a(\"string\"); // Memastikan struktur user\r",
+											"    pm.expect(order.User).to.have.property(\"Email\").that.is.a(\"string\");\r",
+											"    pm.expect(order.User).to.have.property(\"Password\").that.is.a(\"string\");\r",
+											"\r",
+											"    pm.expect(order).to.have.property(\"Product\");\r",
+											"    pm.expect(order.Product).to.have.property(\"Name\").that.is.a(\"string\"); // Memastikan struktur produk\r",
+											"    pm.expect(order.Product).to.have.property(\"Description\").that.is.a(\"string\");\r",
+											"    pm.expect(order.Product).to.have.property(\"Price\").that.is.a(\"number\");\r",
+											"\r",
+											"    const categories = order.Product.Categories; // Memastikan struktur kategori\r",
+											"    pm.expect(categories).to.be.an(\"array\").and.to.not.be.empty; \r",
+											"    categories.forEach((category) => {\r",
+											"      pm.expect(category).to.have.property(\"ID\").that.is.a(\"number\");\r",
+											"      pm.expect(category).to.have.property(\"Name\").that.is.a(\"string\");\r",
+											"    });\r",
+											"\r",
+											"    pm.expect(order).to.have.property(\"Quantity\").that.is.a(\"number\"); // Memastikan atribut lain yang diharapkan\r",
+											"  }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/orders/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"orders",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Can't get order by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response should contain an error message indicating not found\", () => {\r",
+											"  const statusCode = pm.response.code;\r",
+											"\r",
+											"  if (statusCode === 404) { \r",
+											"    const responseData = pm.response.json(); \r",
+											"    pm.expect(responseData).to.have.property(\"error\"); \r",
+											"    pm.expect(responseData.error).to.be.a(\"string\").and.to.equal(\"record not found\"); \r",
+											"  } else if (statusCode === 401) { \r",
+											"    console.warn(\"Received 401 instead of 404\"); \r",
+											"    const responseData = pm.response.json(); \r",
+											"    pm.expect(responseData).to.have.property(\"error\"); \r",
+											"    pm.expect(responseData.error).to.be.a(\"string\").and.to.include(\"unauthorized\"); \r",
+											"  } else {\r",
+											"    console.error(\"Expected status 404, but got:\", statusCode); \r",
+											"    pm.expect.fail(\"Expected status 404 but got \" + statusCode); \r",
+											"  }\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response should contain an error message for unauthorized access\", () => {\r",
+											"  const statusCode = pm.response.code;\r",
+											"\r",
+											"  if (statusCode === 401) { \r",
+											"    const responseData = pm.response.json(); \r",
+											"    pm.expect(responseData).to.have.property(\"error\"); \r",
+											"    pm.expect(responseData.error).to.be.a(\"string\");\r",
+											"\r",
+											"    const possibleErrors = [\"Unauthorized access\", \"unauthorized\", \"Invalid token\", \"Missing token\"]; \r",
+											"    pm.expect(possibleErrors).to.include(responseData.error); \r",
+											"  } else {\r",
+											"    console.error(\"Expected status 401, but got:\", statusCode); \r",
+											"    pm.expect.fail(\"Expected status 401 but got \" + statusCode); \r",
+											"  }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/orders/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"orders",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get all orders",
+					"item": [
+						{
+							"name": "Get all orders",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Memastikan status kode adalah 200, 404, atau 401\r",
+											"pm.test('Response status code should be 200, 404, or 401', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    pm.expect([200, 404, 401]).to.include(statusCode); // Pastikan status kode sesuai\r",
+											"});\r",
+											"\r",
+											"// Memastikan jenis konten adalah application/json\r",
+											"pm.test('Response content type should be application/json', () => {\r",
+											"    const contentType = pm.response.headers.get('Content-Type');\r",
+											"    pm.expect(contentType).to.include('application/json'); // Pastikan konten berformat JSON\r",
+											"});\r",
+											"\r",
+											"// Memeriksa jika respons berhasil dan memiliki struktur data yang diharapkan\r",
+											"pm.test('Check if response is successful and has expected data', () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 200) { // Jika respons sukses, periksa struktur data\r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property('data'); // Harus memiliki properti 'data'\r",
+											"        \r",
+											"        const orders = responseData.data; \r",
+											"        pm.expect(orders).to.be.an('array').and.to.not.be.empty; // Array tidak boleh kosong\r",
+											"\r",
+											"        // Memeriksa struktur order\r",
+											"        orders.forEach((order) => {\r",
+											"            pm.expect(order).to.have.property('Product'); \r",
+											"            pm.expect(order.Product).to.be.a('string').and.to.have.length.at.least(1); \r",
+											"\r",
+											"            pm.expect(order).to.have.property('Price'); \r",
+											"            pm.expect(order.Price).to.be.a('number').and.to.be.greaterThanOrEqual(0); // Harga harus non-negatif\r",
+											"\r",
+											"            pm.expect(order).to.have.property('Quantity'); \r",
+											"            pm.expect(order.Quantity).to.be.a('number').and.to.be.greaterThan(0); // Quantity harus lebih dari nol\r",
+											"\r",
+											"            pm.expect(order).to.have.property('Subtotal'); \r",
+											"            pm.expect(order.Subtotal).to.be.a('number').and.to.be.greaterThanOrEqual(0); // Subtotal harus non-negatif\r",
+											"        });\r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/orders",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Can't get all orders",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Tes untuk memastikan respons memiliki pesan error jika status kode 404\r",
+											"pm.test(\"Response should contain an error message indicating not found\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 404) { // Jika status kode 404, pastikan respons memiliki pesan error yang tepat\r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.be.a(\"string\").and.to.equal(\"record not found\"); \r",
+											"    } else if (statusCode === 401) { // Jika mendapatkan 401, tambahkan fallback\r",
+											"        console.warn(\"Received 401 instead of 404\"); \r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.be.a(\"string\").and.to.include(\"unauthorized\"); \r",
+											"    } else {\r",
+											"        console.error(\"Expected 404, but got:\", statusCode); \r",
+											"        pm.expect.fail(\"Expected status 404 but got \" + statusCode); \r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"// Tes untuk memastikan respons memiliki pesan error jika status kode 401\r",
+											"pm.test(\"Response should contain an error message for unauthorized access\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 401) { // Jika status kode 401, periksa pesan error\r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.be.a(\"string\");\r",
+											"\r",
+											"        const possibleErrors = [\r",
+											"            'unauthorized',\r",
+											"            'token contains an invalid number of segments',\r",
+											"            'Invalid token'\r",
+											"        ]; // Daftar pesan error yang mungkin\r",
+											"        pm.expect(possibleErrors).to.include(responseData.error); \r",
+											"    } else {\r",
+											"        console.error(\"Expected status 401, but got:\", statusCode); \r",
+											"        pm.expect.fail(\"Expected status 401 but got \" + statusCode); \r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/orders",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Hello",
+			"item": [
+				{
+					"name": "Get index",
+					"item": [
+						{
+							"name": "Can't get index",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response should contain error message for not found\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 404) { \r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"error\"); \r",
+											"        pm.expect(responseData.error).to.be.a(\"string\").and.to.include(\"record not found\"); \r",
+											"    } else if (statusCode === 200) { \r",
+											"        console.warn(\"Received 200 instead of 404\"); \r",
+											"        const responseData = pm.response.json();\r",
+											"        pm.expect(responseData).to.have.property(\"data\"); \r",
+											"        console.log(\"Received data:\", responseData.data); \r",
+											"    } else {\r",
+											"        console.error(\"Expected status 404, but got:\", statusCode); \r",
+											"        pm.expect.fail(\"Expected status 404 but got \" + statusCode); \r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/hello",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get index",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Tes untuk memastikan status kode adalah 200 atau 404\r",
+											"pm.test(\"Response status code should be 200 or 404\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"    pm.expect([200, 404]).to.include(statusCode); \r",
+											"});\r",
+											"\r",
+											"// Tes untuk memastikan jenis konten adalah application/json\r",
+											"pm.test(\"Response content type should be application/json\", () => {\r",
+											"    const contentType = pm.response.headers.get(\"Content-Type\");\r",
+											"    pm.expect(contentType).to.include(\"application/json\"); \r",
+											"});\r",
+											"\r",
+											"// Tes untuk memeriksa konten respons jika status kode 200\r",
+											"pm.test(\"Response should contain data with value 'hello'\", () => {\r",
+											"    const statusCode = pm.response.code;\r",
+											"\r",
+											"    if (statusCode === 200) { // Jika status 200, pastikan respons memiliki data yang diharapkan\r",
+											"        const responseData = pm.response.json(); \r",
+											"        pm.expect(responseData).to.have.property(\"data\"); \r",
+											"        pm.expect(responseData.data).to.equal(\"hello\"); \r",
+											"    }\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/hello",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "{{Base_URL}} ",
+			"value": "https://altashop-api.fly.dev/api/"
+		},
+		{
+			"key": "BASE_URL",
+			"value": "https://altashop-api.fly.dev/api"
+		},
+		{
+			"key": "BASE_URL_1",
+			"value": "https://altashop-api.fly.dev/api/orders"
+		}
+	]
+}

@@ -1,0 +1,902 @@
+{
+  "id": "d5ab815c-fcd3-4666-81ec-bb2330de7405",
+  "version": "2.0",
+  "name": "mini book store",
+  "url": "https://mini-book-store-fe.vercel.app/",
+  "tests": [{
+    "id": "40fa2e8a-b091-47d1-8bdb-1a3f3bfa7591",
+    "name": "User can edit book",
+    "commands": [{
+      "id": "a85b0513-f617-45aa-a40e-032b619a7f11",
+      "comment": "",
+      "command": "open",
+      "target": "https://mini-book-store-fe.vercel.app/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4293680d-93be-49ad-b7b3-456639f788dd",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1296x688",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "894721dc-74aa-4bdf-ade8-257082d6a948",
+      "comment": "",
+      "command": "click",
+      "target": "css=.h-8:nth-child(1) a:nth-child(2) path",
+      "targets": [
+        ["css=.h-8:nth-child(1) a:nth-child(2) path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "8c5d42bf-93fc-4a0f-857f-6d3375d4aab1",
+      "comment": "",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9bc2a7dc-665c-4f68-9fd8-b96254364437",
+      "comment": "",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "47830f53-a846-42c8-bd43-4b8572ba2ad9",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "48e938bf-5598-43e5-abfa-448fb05bcfde",
+      "comment": "",
+      "command": "type",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "ily"
+    }, {
+      "id": "229e20f5-1b07-43eb-b1b7-45a04a91bee6",
+      "comment": "",
+      "command": "click",
+      "target": "id=author",
+      "targets": [
+        ["id=author", "id"],
+        ["css=#author", "css:finder"],
+        ["xpath=//input[@id='author']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4f5fdf0a-f140-4526-8327-5dadf5c6881d",
+      "comment": "",
+      "command": "click",
+      "target": "id=author",
+      "targets": [
+        ["id=author", "id"],
+        ["css=#author", "css:finder"],
+        ["xpath=//input[@id='author']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2a0fc811-bd4a-425d-a81a-c1ef9c90e4ae",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=author",
+      "targets": [
+        ["id=author", "id"],
+        ["css=#author", "css:finder"],
+        ["xpath=//input[@id='author']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "475d6054-e40f-4311-bfb2-55301c78a105",
+      "comment": "",
+      "command": "type",
+      "target": "id=author",
+      "targets": [
+        ["id=author", "id"],
+        ["css=#author", "css:finder"],
+        ["xpath=//input[@id='author']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "tereliye"
+    }, {
+      "id": "330af46e-7199-4686-ac59-cefd141fcb5f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.p-2",
+      "targets": [
+        ["css=.p-2", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Edit Book')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8e4d9057-2011-4e93-ab1f-341d24396d03",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-3xl",
+      "targets": [
+        ["css=.text-3xl", "css:finder"],
+        ["xpath=//div[@id='root']/div/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Show Book')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "123030fb-439d-4181-8168-77ce50d8ea46",
+    "name": "User can't create book",
+    "commands": [{
+      "id": "3529da86-53c8-4c71-aa11-8a77e0753525",
+      "comment": "",
+      "command": "open",
+      "target": "https://mini-book-store-fe.vercel.app/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "55533192-5420-4b98-a4a9-15f20d314e1a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1296x688",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b0f54ba1-897e-43b3-a193-8d514003785c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.h-8:nth-child(1) .text-yellow-600",
+      "targets": [
+        ["css=.h-8:nth-child(1) .text-yellow-600", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "10b1546f-d7be-4374-847e-bb76e15ff334",
+      "comment": "",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c2035b24-7bb7-488c-875d-df6c95a22ad2",
+      "comment": "",
+      "command": "type",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1895ba9b-8770-4d0f-a7bf-a4611397d428",
+      "comment": "",
+      "command": "click",
+      "target": "id=author",
+      "targets": [
+        ["id=author", "id"],
+        ["css=#author", "css:finder"],
+        ["xpath=//input[@id='author']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "70811f03-0c17-48e0-8329-39eccf6ff7e3",
+      "comment": "",
+      "command": "type",
+      "target": "id=author",
+      "targets": [
+        ["id=author", "id"],
+        ["css=#author", "css:finder"],
+        ["xpath=//input[@id='author']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ca6e859-7279-4fb6-b10e-4fd8d7da9d6d",
+      "comment": "",
+      "command": "click",
+      "target": "id=publishYear",
+      "targets": [
+        ["id=publishYear", "id"],
+        ["css=#publishYear", "css:finder"],
+        ["xpath=//input[@id='publishYear']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fd217e5d-4e64-4d04-9428-a4fb4bb252f9",
+      "comment": "",
+      "command": "type",
+      "target": "id=publishYear",
+      "targets": [
+        ["id=publishYear", "id"],
+        ["css=#publishYear", "css:finder"],
+        ["xpath=//input[@id='publishYear']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "74882744-0045-48fe-851b-b4317af0a0ad",
+      "comment": "",
+      "command": "click",
+      "target": "css=.p-2",
+      "targets": [
+        ["css=.p-2", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Edit Book')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0125fcf4-cf14-44bd-9b58-743f40433c67",
+      "comment": "",
+      "command": "click",
+      "target": "css=.go1888806478",
+      "targets": [
+        ["css=.go1888806478", "css:finder"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3dee4bf7-2ece-493e-933a-a73d399c8e48",
+      "comment": "",
+      "command": "click",
+      "target": "css=.go1888806478",
+      "targets": [
+        ["css=.go1888806478", "css:finder"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5fc2a404-7d30-419a-91ad-9eafc64067ea",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "css=.go1888806478",
+      "targets": [
+        ["css=.go1888806478", "css:finder"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "af51963d-991a-4715-a59d-4b444cfe176f",
+      "comment": "",
+      "command": "click",
+      "target": "id=notistack-snackbar",
+      "targets": [
+        ["id=notistack-snackbar", "id"],
+        ["css=#notistack-snackbar", "css:finder"],
+        ["xpath=//div[@id='notistack-snackbar']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "47f6b2b4-fcf0-41ae-9c65-765fec9b7d24",
+    "name": "User can create book with filling in book details",
+    "commands": [{
+      "id": "3e6a403c-5ded-45f7-b8bb-1ca7b5e149f0",
+      "comment": "",
+      "command": "open",
+      "target": "https://mini-book-store-fe.vercel.app/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fdb2ce3c-702d-45e9-89c8-c2b41dc30246",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1296x688",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "37f263da-cb86-448f-b36e-6861dd71947c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-sky-800 > path:nth-child(2)",
+      "targets": [
+        ["css=.text-sky-800 > path:nth-child(2)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "a3f1357f-25da-46c7-ab90-ea94c0d6adf0",
+      "comment": "",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff2185b1-c594-4a7e-9b23-ad74d924691a",
+      "comment": "",
+      "command": "type",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "queen of tears"
+    }, {
+      "id": "2e7080e0-fa5d-4f66-aa8b-c74721acd99e",
+      "comment": "",
+      "command": "click",
+      "target": "id=author",
+      "targets": [
+        ["id=author", "id"],
+        ["css=#author", "css:finder"],
+        ["xpath=//input[@id='author']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "18398561-074e-41a9-89fa-85de0812f109",
+      "comment": "",
+      "command": "click",
+      "target": "id=author",
+      "targets": [
+        ["id=author", "id"],
+        ["css=#author", "css:finder"],
+        ["xpath=//input[@id='author']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dfbf2d4e-7c7f-40a6-b32b-f18c3674a19b",
+      "comment": "",
+      "command": "type",
+      "target": "id=author",
+      "targets": [
+        ["id=author", "id"],
+        ["css=#author", "css:finder"],
+        ["xpath=//input[@id='author']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "kim so men"
+    }, {
+      "id": "0d661a06-3cd0-4076-8fdb-b0da8c2bc116",
+      "comment": "",
+      "command": "click",
+      "target": "id=publishYear",
+      "targets": [
+        ["id=publishYear", "id"],
+        ["css=#publishYear", "css:finder"],
+        ["xpath=//input[@id='publishYear']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b1232b83-fc0a-4924-9a71-954e07e7340e",
+      "comment": "",
+      "command": "type",
+      "target": "id=publishYear",
+      "targets": [
+        ["id=publishYear", "id"],
+        ["css=#publishYear", "css:finder"],
+        ["xpath=//input[@id='publishYear']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "2024"
+    }, {
+      "id": "af789d82-f50e-43ca-b524-b57e05171c4a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.p-2",
+      "targets": [
+        ["css=.p-2", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save Book')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f5977af8-4b73-4543-955b-0bbeabe33914",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-3xl",
+      "targets": [
+        ["css=.text-3xl", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Books List')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "74269eb8-ce37-42f4-bc93-c5790a175d2c",
+    "name": "Users can't create books without filling in book details",
+    "commands": [{
+      "id": "c9d4bd1f-a2f8-4c34-8d7e-f22b5dba2d59",
+      "comment": "",
+      "command": "open",
+      "target": "https://mini-book-store-fe.vercel.app/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1a07b00b-9fd9-48ff-b50e-0d467a300f54",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1296x688",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4e106c68-cbfc-46d9-90e4-051619caf0ce",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-sky-800 > path:nth-child(2)",
+      "targets": [
+        ["css=.text-sky-800 > path:nth-child(2)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "a728b200-8302-4e9c-8604-41f090f31ebe",
+      "comment": "",
+      "command": "click",
+      "target": "css=.p-2",
+      "targets": [
+        ["css=.p-2", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save Book')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "abec1e90-b7d5-44b5-94bd-25be723d4a17",
+      "comment": "",
+      "command": "click",
+      "target": "id=notistack-snackbar",
+      "targets": [
+        ["id=notistack-snackbar", "id"],
+        ["css=#notistack-snackbar", "css:finder"],
+        ["xpath=//div[@id='notistack-snackbar']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "0c13d333-5064-4811-bd35-0192dffbe6ee",
+    "name": "User can delete book",
+    "commands": [{
+      "id": "5acfbb8b-c2d1-49d4-a29d-408ea6f51e80",
+      "comment": "",
+      "command": "open",
+      "target": "https://mini-book-store-fe.vercel.app/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9a75f7bc-e684-446d-9541-a4f9b4aa2e9e",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1296x688",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f000eb13-158a-4123-9ad3-7511db1e0fea",
+      "comment": "",
+      "command": "click",
+      "target": "css=.h-8:nth-child(1) a:nth-child(3) path:nth-child(2)",
+      "targets": [
+        ["css=.h-8:nth-child(1) a:nth-child(3) path:nth-child(2)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "032ba99b-729d-47bb-9757-1b5d3d84244c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bg-red-600",
+      "targets": [
+        ["css=.bg-red-600", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Yes')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a0a197c1-b4cf-48a8-a1c3-d8c6c3bb8d1c",
+      "comment": "",
+      "command": "click",
+      "target": "id=notistack-snackbar",
+      "targets": [
+        ["id=notistack-snackbar", "id"],
+        ["css=#notistack-snackbar", "css:finder"],
+        ["xpath=//div[@id='notistack-snackbar']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "92a7842b-b58d-4eaf-a2b6-35e2806377e4",
+    "name": "User can see detail book",
+    "commands": [{
+      "id": "2cc0c906-3f0a-4ff5-82eb-5d7363d092d6",
+      "comment": "",
+      "command": "open",
+      "target": "https://mini-book-store-fe.vercel.app/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6125e45c-2844-40c8-a90a-f774980608a2",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x672",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2ea08ba3-ab52-4b66-b058-5aaa0f650787",
+      "comment": "",
+      "command": "click",
+      "target": "css=.h-8:nth-child(1) .text-green-800",
+      "targets": [
+        ["css=.h-8:nth-child(1) .text-green-800", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "4424fba3-3ef9-433f-9bd2-c6133cb86392",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-3xl",
+      "targets": [
+        ["css=.text-3xl", "css:finder"],
+        ["xpath=//div[@id='root']/div/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Show Book')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "078e05af-de5b-43f1-ab52-d8db0b87488f",
+    "name": "User can see book list in table",
+    "commands": [{
+      "id": "02767c94-559c-4e13-8fbf-6f5890ecb3d6",
+      "comment": "",
+      "command": "open",
+      "target": "https://mini-book-store-fe.vercel.app/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "41ac9cbe-b14a-44b9-9523-d215590d0196",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1296x688",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7a81a56b-11d9-4b3a-88ee-29e124fcb3a8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bg-sky-300:nth-child(1)",
+      "targets": [
+        ["css=.bg-sky-300:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Table')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c1896c76-8ad6-4c0a-a332-ebbb64ae7d70",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-3xl",
+      "targets": [
+        ["css=.text-3xl", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Books List')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "5452775b-5311-42c9-a6c5-4c6b699fa31b",
+    "name": "User can see book list in card",
+    "commands": [{
+      "id": "50cb8b5c-2379-4e44-b59b-2b7b5e981b7a",
+      "comment": "",
+      "command": "open",
+      "target": "https://mini-book-store-fe.vercel.app/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b8ba4fca-ec5d-4acc-93b2-d6a7870ce99f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1296x688",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0e7a886a-4270-45bc-82fc-92b9a02add25",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bg-sky-300:nth-child(2)",
+      "targets": [
+        ["css=.bg-sky-300:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Card')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d7a97637-7cb7-469c-ad20-feae5b99deb2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.border-2:nth-child(1) .text-3xl",
+      "targets": [
+        ["css=.border-2:nth-child(1) .text-3xl", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "919b8f4c-19aa-4ce1-990e-29c45945ac1b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.right-6",
+      "targets": [
+        ["css=.right-6", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "4c49b74b-589b-405d-b938-7d5994eecb2c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.my-8",
+      "targets": [
+        ["css=.my-8", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Books List')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "411768a6-b2b4-4e82-9e5d-221c89f13d87",
+    "name": "User can't create book with empty author and publish year",
+    "commands": [{
+      "id": "73c9ab65-41bf-4f9b-981b-181c396e4d54",
+      "comment": "",
+      "command": "open",
+      "target": "https://mini-book-store-fe.vercel.app/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b70a7c60-9ac7-4f4a-99cb-8735185fd716",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1296x688",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "38024ecf-0c06-4610-813a-fb48452aa196",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-sky-800 > path:nth-child(2)",
+      "targets": [
+        ["css=.text-sky-800 > path:nth-child(2)", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "8fac646c-85ba-4cce-a9d9-26cac1bff06f",
+      "comment": "",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1580405f-cb40-4b86-a646-31b6d9931951",
+      "comment": "",
+      "command": "type",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "my love from the star"
+    }, {
+      "id": "bdd7571d-0356-451c-8eb8-64c3b050a40b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.p-2",
+      "targets": [
+        ["css=.p-2", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save Book')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "64e8a0f8-2b21-4e52-b349-5ad99bd72663",
+      "comment": "",
+      "command": "click",
+      "target": "id=notistack-snackbar",
+      "targets": [
+        ["id=notistack-snackbar", "id"],
+        ["css=#notistack-snackbar", "css:finder"],
+        ["xpath=//div[@id='notistack-snackbar']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "c4eaaf52-3f47-40cf-8ff5-df69d5fdfc85",
+    "name": "User can't create book with empty publish year",
+    "commands": [{
+      "id": "19a62c8f-d9ed-4787-8e49-16345bdee029",
+      "comment": "",
+      "command": "open",
+      "target": "https://mini-book-store-fe.vercel.app/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dc35aa19-ae23-4606-b49a-7e80e274e395",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1296x688",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e28152eb-b861-4095-9a7f-1427ebd1958a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-sky-800",
+      "targets": [
+        ["css=.text-sky-800", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "deb743ac-0c51-4b37-b8c8-006f8f6c574c",
+      "comment": "",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "13a9de97-b40e-4594-8ba3-1117aea927d2",
+      "comment": "",
+      "command": "type",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "ini kah rasanya cinta"
+    }, {
+      "id": "e9cf0d79-28f1-451b-b733-2516caab31b7",
+      "comment": "",
+      "command": "click",
+      "target": "id=author",
+      "targets": [
+        ["id=author", "id"],
+        ["css=#author", "css:finder"],
+        ["xpath=//input[@id='author']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "41140ac1-0e20-475c-a224-d3e8b4a32202",
+      "comment": "",
+      "command": "type",
+      "target": "id=author",
+      "targets": [
+        ["id=author", "id"],
+        ["css=#author", "css:finder"],
+        ["xpath=//input[@id='author']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "kim teh yung"
+    }, {
+      "id": "3135d9e0-f77b-4fe5-a9e5-88d7cb596111",
+      "comment": "",
+      "command": "click",
+      "target": "css=.p-2",
+      "targets": [
+        ["css=.p-2", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save Book')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0215bf1d-9d8f-43fa-a201-a5db239cfb4e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.go1888806478",
+      "targets": [
+        ["css=.go1888806478", "css:finder"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "93d5410b-da96-41a8-9486-d337f789ad0a",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://mini-book-store-fe.vercel.app/"],
+  "plugins": []
+}
